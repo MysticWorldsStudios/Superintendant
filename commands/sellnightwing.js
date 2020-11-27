@@ -6,7 +6,6 @@ module.exports.run = async (bot, message, args) => {
     
     let user = message.mentions.members.first() || message.author
     let amount = 500
-	let sale = 1
     let author = await db.fetch(`money_${message.author.id}`) // fetch authors balance
 	let nwfirst = await db.fetch(`nightwing_${message.author.id}`)
 
@@ -15,7 +14,7 @@ module.exports.run = async (bot, message, args) => {
         return message.channel.send(':x: You need atleast 1 NightWing to sell one!')
     }
 
-    db.subtract(`nightwing_${message.author.id}`, sale)
+    db.subtract(`nightwing_${message.author.id}`, nwfirst)
     db.add(`money_${user.id}`, amount)
          
     
@@ -24,7 +23,7 @@ module.exports.run = async (bot, message, args) => {
   
     let embed = new Discord.MessageEmbed()
     .setAuthor(`Successfully Sold a NightWing`, message.author.displayAvatarURL)
-    .addField(`Amount`, `${sale} NightWing\nYou now have ${nw} NightWings`)
+    .addField(`Amount`, `${nwfirst} NightWings\nYou now have ${nw} NightWings`)
     .addField(`Balance Updated`, `${bal}C`)
     .setColor("Green") // random = "RANDOM"
     .setTimestamp()
