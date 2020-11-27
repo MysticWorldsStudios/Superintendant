@@ -5,7 +5,6 @@ const Discord = require('discord.js')
 module.exports.run = async (bot, message, args) => {
     
     let user = message.mentions.members.first() || message.author
-    let amount = 5
     let author = await db.fetch(`money_${message.author.id}`) // fetch authors balance
     let rastart = await db.fetch(`rations_${message.author.id}`)
 
@@ -13,8 +12,8 @@ module.exports.run = async (bot, message, args) => {
         return message.channel.send(':x: You need atleast 1 lot of Food Rations to sell!')
     }
 
-    db.subtract(`rations_${message.author.id}`, rastart * 5)
-    db.add(`money_${user.id}`, amount)
+    db.subtract(`rations_${message.author.id}`, rastart)
+    db.add(`money_${user.id}`, rastart * 5)
          
     
   let bal = await db.fetch(`money_${user.id}`)
