@@ -5,7 +5,6 @@ const Discord = require('discord.js')
 module.exports.run = async (bot, message, args) => {
     
     let user = message.mentions.members.first() || message.author
-    let amount = 500
     let author = await db.fetch(`money_${message.author.id}`) // fetch authors balance
 	let nwfirst = await db.fetch(`nightwing_${message.author.id}`)
 
@@ -15,7 +14,7 @@ module.exports.run = async (bot, message, args) => {
     }
 
     db.subtract(`nightwing_${message.author.id}`, nwfirst)
-    db.add(`money_${user.id}`, amount)
+    db.add(`money_${user.id}`, nwfirst * 500)
          
     
   let bal = await db.fetch(`money_${user.id}`)
