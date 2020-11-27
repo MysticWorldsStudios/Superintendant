@@ -6,23 +6,24 @@ module.exports.run = async (bot, message, args) => {
     
     let user = message.mentions.members.first() || message.author
     let amount = 500
+	let sale = 1
     let author = await db.fetch(`money_${message.author.id}`) // fetch authors balance
+	let nw = await db.fetch(`nightwing_${message.author.id}`)
 
 
-    if (author < 1) { // if the authors balance is less than 1000, return this.
+    if (nw < 1) { // if the authors got less than 1 nightwing, return this.
         return message.channel.send(':x: You need atleast 1 NightWing to sell one!')
     }
-    if (isNaN(args[0])) return message.channel.send(`${message.author}, you need to input a valid number to sell!.`) // if args[0] (first input) is not a number, return.
 
-    db.subtract(`nightwing_${user.id}`, args[0])
-    db.add(`money_${user.id}`, args[0] * amount)
+    db.subtract(`nightwing_${message.author.id}`, sale)
+    db.add(`money_${user.id}`, amount)
          
     
   let bal = await db.fetch(`money_${user.id}`)
   
     let embed = new Discord.MessageEmbed()
     .setAuthor(`Sold Successfully a NightWing!`, message.author.displayAvatarURL)
-    .addField(`Amount`, `${args[0]} NightWings`)
+    .addField(`Amount`, `${sale} NightWing\nYou now have ${nw} Nightwings`)
     .addField(`Balance Updated`, `${bal}C`)
     .setColor("Green") // random = "RANDOM"
     .setTimestamp()
