@@ -11,17 +11,16 @@ module.exports.run = async (bot, message, args) => {
     if (author < 1000) { // if the authors balance is less than 1000, return this.
         return message.channel.send(':x: You need atleast 1000$ to buy a NightWing Pet')
     }
-    if (isNaN(args[0])) return message.channel.send(`${message.author}, you need to input a valid number to buy!.`) // if args[0] (first input) is not a number, return.
 
-    db.subtract(`money_${user.id}`, args[0] * amount)
-    db.add(`nightwing_${user.id}`, args[0])
+    db.subtract(`money_${user.id}`, amount)
+    db.add(`nightwing_${user.id}`, 1)
          
     
   let bal = await db.fetch(`money_${user.id}`)
   
     let embed = new Discord.MessageEmbed()
     .setAuthor(`Baught NightWing!`, message.author.displayAvatarURL)
-    .addField(`Amount`, `${args[0]} NightWings`)
+    .addField(`Amount`, `1 NightWing`)
     .addField(`Balance Updated`, `${bal}C`)
     .setColor("Green") // random = "RANDOM"
     .setTimestamp()
