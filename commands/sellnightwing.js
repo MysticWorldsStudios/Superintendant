@@ -8,9 +8,10 @@ module.exports.run = async (bot, message, args) => {
     let amount = 500
 	let sale = 1
     let author = await db.fetch(`money_${message.author.id}`) // fetch authors balance
+	let nwfirst = await db.fetch(`nightwing_${message.author.id}`)
 
 
-    if (nw < 1) { // if the authors got less than 1 nightwing, return this.
+    if (nwfirst < 1) { // if the authors got less than 1 nightwing, return this.
         return message.channel.send(':x: You need atleast 1 NightWing to sell one!')
     }
 
