@@ -6,7 +6,6 @@ module.exports.run = async (bot, message, args) => {
     
     let user = message.mentions.members.first() || message.author
     let amount = 5
-	let sale = 1
     let author = await db.fetch(`money_${message.author.id}`) // fetch authors balance
     let rastart = await db.fetch(`rations_${message.author.id}`)
 
@@ -14,7 +13,7 @@ module.exports.run = async (bot, message, args) => {
         return message.channel.send(':x: You need atleast 1 lot of Food Rations to sell!')
     }
 
-    db.subtract(`rations_${message.author.id}`, sale)
+    db.subtract(`rations_${message.author.id}`, rastart * 5)
     db.add(`money_${user.id}`, amount)
          
     
@@ -23,7 +22,7 @@ module.exports.run = async (bot, message, args) => {
   
     let embed = new Discord.MessageEmbed()
     .setAuthor(`Successfully Sold Food Rations!`, message.author.displayAvatarURL)
-    .addField(`Amount`, `${sale} food rations\nYou now have ${ra} food rations`)
+    .addField(`Amount`, `${rastart} food rations\nYou now have ${ra} food rations`)
     .addField(`Balance Updated`, `${bal}C`)
     .setColor("Green") // random = "RANDOM"
     .setTimestamp()
