@@ -22,8 +22,8 @@ module.exports.run = async (bot, message, args) => {
   let ra = await db.fetch(`rations_${message.author.id}`)
   
     let embed = new Discord.MessageEmbed()
-    .setAuthor(`Sold Successfully a NightWing!`, message.author.displayAvatarURL)
-    .addField(`Amount`, `${sale} food rations\nYou now have ${ra} Nightwings`)
+    .setAuthor(`Successfully Sold Food Rations!`, message.author.displayAvatarURL)
+    .addField(`Amount`, `${sale} food rations\nYou now have ${ra} food rations`)
     .addField(`Balance Updated`, `${bal}C`)
     .setColor("Green") // random = "RANDOM"
     .setTimestamp()
