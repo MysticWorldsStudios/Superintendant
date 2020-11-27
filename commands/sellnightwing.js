@@ -8,7 +8,6 @@ module.exports.run = async (bot, message, args) => {
     let amount = 500
 	let sale = 1
     let author = await db.fetch(`money_${message.author.id}`) // fetch authors balance
-	let nw = await db.fetch(`nightwing_${message.author.id}`)
 
 
     if (nw < 1) { // if the authors got less than 1 nightwing, return this.
@@ -20,6 +19,7 @@ module.exports.run = async (bot, message, args) => {
          
     
   let bal = await db.fetch(`money_${user.id}`)
+  let nw = await db.fetch(`nightwing_${message.author.id}`)
   
     let embed = new Discord.MessageEmbed()
     .setAuthor(`Sold Successfully a NightWing!`, message.author.displayAvatarURL)
