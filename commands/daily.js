@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args) => {
     if (daily !== null && timeout - (Date.now() - daily) > 0) {
         let time = ms(timeout - (Date.now() - daily));
 
-        message.channel.send(`You already generated your free credits\nCome back in**${time.hours}h ${time.minutes}m ${time.seconds}s**!\n <:SIOhNo:751134715972681908>`)
+        message.channel.send(`You already generated your free credits\nCome back in **${time.hours}h ${time.minutes}m ${time.seconds}s**!\n <:SIOhNo:751134715972681908>`)
     } else {
         let embed = new Discord.MessageEmbed()
         .setAuthor(`Daily`, message.author.displayAvatarURL())

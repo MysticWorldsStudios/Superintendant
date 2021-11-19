@@ -8,13 +8,6 @@ if (message.guild.id !== '591603307416518676') return message.reply('This comman
 if (!message.member.hasPermission('ADMINISTRATOR')) {
         return message.reply('You do not have control over the credit bank, sorry.')
     }
-if (author < 0) {
-
-    db.set(`money_${user.id}`, broke)
-
-    return message.channel.send('you have no credits sorry')
-
-}
     let user = message.mentions.members.first() || message.author
 
     if (isNaN(args[0])) return message.channel.send(`${message.author}, you need to input a valid number to remove.`) // if args[0] (first input) is not a number, return.

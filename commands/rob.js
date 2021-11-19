@@ -21,8 +21,8 @@ module.exports.run = async (bot, message, args, config) => {
         return message.channel.send(':x: You need atleast 1000$ to rob somebody.')
     }
 
-    if (targetuser < 0) { // if mentioned user has 0 or less, it will return this.
-        return message.channel.send(`:x: ${user.user.username} does not have anything to rob.`)
+    if (targetuser < 1000) { // if mentioned user has 1000 or less, it will return this.
+        return message.channel.send(`:x: ${user.user.username} has less than 1000, just dont rob the noobies, its a dick move.`)
     }
 
 

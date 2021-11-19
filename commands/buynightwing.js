@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
     let author = await db.fetch(`money_${message.author.id}`) // fetch authors balance
 
     if (author < 1000) { // if the authors balance is less than 1000, return this.
-        return message.channel.send(':x: You need atleast 1000C to buy a NightWing Pet')
+        return message.channel.send(':x: You need atleast 1000$ to buy a NightWing Pet')
     }
 
     db.subtract(`money_${user.id}`, amount)
